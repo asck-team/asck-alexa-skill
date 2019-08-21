@@ -1,0 +1,13 @@
+service: java-lambda-travis-sls
+
+provider:
+  name: aws
+  runtime: java8
+  region: eu-west-1
+
+package:
+  artifact: target/asck-alexa-skill-*.jar
+
+functions:
+  hello:
+    handler: org.asckteam.alexa.skill.ASCKStreamHandler
