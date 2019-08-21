@@ -6,7 +6,7 @@ provider:
   region: eu-west-1
 
 package:
-  artifact: target/asck-alexa-skill-*.jar
+  artifact: target/asck-alexa-skill.jar
 
 functions:
   hello:
