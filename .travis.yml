@@ -16,5 +16,6 @@ deploy:
   region: eu-west-1
   role: arn:aws:iam::470183980790:role/service-role/ASCKLambda-role-ajfuk4b4
   runtime: java8
-  handler_name: handler
-  module_name: org.asckteam.alexa.skill.ASCKStreamHandler
+  handler_name: "::handleRequest"
+  module_name: "org.asckteam.alexa.skill.ASCKStreamHandler"
+  file: "./target/asck-alexa-skill-jar-with-dependencies.jar"
