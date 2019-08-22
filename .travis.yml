@@ -8,7 +8,7 @@ cache:
       - $HOME/.m2
 
 script:
-  - mvn clean package -B
+  - mvn -B clean compile assembly:assembly -DdescriptorId=jar-with-dependencies
 
 deploy:
   provider: lambda
@@ -16,5 +16,5 @@ deploy:
   region: eu-west-1
   role: arn:aws:iam::470183980790:role/service-role/ASCKLambda-role-ajfuk4b4
   runtime: java8
-  handler_name: handleRequest
+  handler_name: handler
   module_name: org.asckteam.alexa.skill.ASCKStreamHandler
