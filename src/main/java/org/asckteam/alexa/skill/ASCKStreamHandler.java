@@ -4,6 +4,7 @@ import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
 
+@SuppressWarnings("unused")
 public class ASCKStreamHandler extends SkillStreamHandler {
 
 
