@@ -1,5 +1,9 @@
 language: java
 
+env:
+  global:
+    - PATH=$HOME/.local/bin:$PATH
+
 jdk:
   - openjdk11
 
@@ -7,15 +11,28 @@ cache:
   - directories:
       - $HOME/.m2
 
+before_install:
+  - pip install --user awscli
+
+
+before_script:
+  - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+  - aws configure set aws_secret_access_key $AWS_SECRECT_ACCESS_KEY
+  - aws configure set region eu-west-1
+  - aws configure set output json
+
 script:
   - mvn -B clean compile assembly:assembly -DdescriptorId=jar-with-dependencies
 
+
+
 deploy:
-  provider: lambda
-  function_name: ASCKLambda
-  region: eu-west-1
-  role: arn:aws:iam::470183980790:role/service-role/ASCKLambda-role-ajfuk4b4
-  runtime: java8
-  handler_name: "::handleRequest"
-  module_name: "org.asckteam.alexa.skill.ASCKStreamHandler"
-  file: "./target/asck-alexa-skill-jar-with-dependencies.jar"
+  provider: script
+  script: aws lambda update-function --function-name 'ASCKLambda' --zip-file 'fileb://target/asck-alexa-skill-jar-with-dependencies.jar'
+  skip_cleanup: true
+  on:
+    branch: master
+
+notifications:
+  email:
+    on_failure: always
