@@ -28,7 +28,7 @@ script:
 
 deploy:
   provider: script
-  script: aws lambda update-function --function-name 'ASCKLambda' --zip-file 'fileb://target/asck-alexa-skill-jar-with-dependencies.jar'
+  script: aws lambda update-function-code --function-name 'ASCKLambda' --zip-file 'fileb://target/asck-alexa-skill-jar-with-dependencies.jar'
   skip_cleanup: true
   on:
     branch: master
