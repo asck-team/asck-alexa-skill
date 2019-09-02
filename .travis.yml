@@ -22,7 +22,7 @@ before_script:
   - aws configure set default.output json
 
 script:
-  - mvn -B clean compile assembly:assembly -DdescriptorId=jar-with-dependencies
+  - mvn -B clean package
 
 
 
