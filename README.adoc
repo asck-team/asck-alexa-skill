@@ -1,0 +1,18 @@
+= ASCK Alexa Skill
+
+image:https://travis-ci.org/asck-team/asck-alexa-skill.svg?branch=master["Build Status", link="https://travis-ci.org/asck-team/asck-alexa-skill"]
+
+== Architecture
+
+Describe basic architecture with usage of heroku infrastructure from asck survey system.
+
+// TODO
+
+
+== Useful Links
+
+* https://www.youtube.com/watch?v=1cx_I0kARnU&list=PL2KJmkHeYQTNwlZqLh_ptZhSNZf93e8Sp&index=1[Alexa Skills Development Tutorial]
+* https://github.com/schauder/talk-ddd-jdbc/blob/master/pom.xml[Setup for Revealjs, but not working]
+* https://github.com/asciidoctor/asciidoctor-maven-examples/tree/master/asciidoc-to-revealjs-example[official example from asciidoctor maven plugin]
+* https://spin.atomicobject.com/2017/01/25/alexa-aws-deployment/[AWS Lambda deployment with awscli]
+* https://circleci.com/blog/community-project-alexa-skill/[Alexa Skill with http rest call to circle ci]
