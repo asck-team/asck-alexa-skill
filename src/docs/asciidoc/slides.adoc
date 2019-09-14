@@ -1,10 +1,37 @@
 = ASCK Alexa Skill
 
-== Introduction
+:imagesdir: images
+
+== Agenda
+[%step]
+* Eigene Alexa Skill in wenige schritte
+* Was brauche ich dafür
+* FeedbackSystem als Rest API
+* Alexa Skill und die Schnittstelle zu meine eigene Rest API
+* ASCK Alexa live demo
+
+== Eigene Alexa Skill in wenige schritte
+
+Alexa ...?
+
+== Was brauche ich dafür
+
+image::AmazonAlexaBuildingCustomSkills.png[width="800px"]
 
 [%step]
-* This is a user manual
-* This project does somethin
+
+* Eigene Skill implementieren
+* Eigene RestAPI implementieren
+
+== FeedbackSystem als Rest API
+[plantuml, "ASCKBigPicture", png]
+....
+include::plantuml/ASCKBigPicture.puml[]
+....
+
+== Alexa Skill und die Schnittstelle zu meine eigene Rest API
+
+== ASCK Alexa live demo
 
 == Speaker Notes
 
