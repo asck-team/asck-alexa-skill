@@ -59,7 +59,7 @@ public class ASCKIntentHandler implements RequestHandler {
 
         List<ASCKEvent> events = getEventsForUser("constantinidis@web.de");
 
-        String eventsString = events.stream().map(e -> e.getName()).collect(Collectors.joining(","));
+        String eventsString = events.stream().map(ASCKEvent::getName).collect(Collectors.joining(","));
 
         return handlerInput.getResponseBuilder().withSpeech(eventsString).withSimpleCard("Hello World", eventsString).build();
     }
