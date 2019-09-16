@@ -17,7 +17,6 @@ public class ASCKExceptionHandler implements ExceptionHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput, Throwable throwable) {
-        log.error("Fehler", throwable);
         return handlerInput.getResponseBuilder().withSpeech(throwable.getMessage()).build();
     }
 }
