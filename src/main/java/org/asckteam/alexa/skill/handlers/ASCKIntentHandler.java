@@ -8,8 +8,15 @@ import lombok.extern.log4j.Log4j2;
 import org.asckteam.alexa.skill.model.ASCKEvent;
 import org.asckteam.alexa.skill.model.ASCKUser;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Log4j2
 @SuppressWarnings("unused")
@@ -22,30 +29,28 @@ public class ASCKIntentHandler implements RequestHandler {
 
 
     protected ASCKUser getASCKUser(String email) {
-//        Client client = ClientBuilder.newClient();
-//        WebTarget target = client.target("http://survey.asck-team.org/v1/feedback/user").path(email);
-//        Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
-//        javax.ws.rs.core.Response response = invocationBuilder.get();
-//        if (response.getStatusInfo().getFamily() == javax.ws.rs.core.Response.Status.Family.REDIRECTION) {
-//            target = client.target(response.getLocation());
-//            invocationBuilder = target.request(MediaType.APPLICATION_JSON);
-//        }
-//        return invocationBuilder.get(ASCKUser.class);
-        return null;
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target("http://survey.asck-team.org/v1/feedback/user").path(email);
+        Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
+        javax.ws.rs.core.Response response = invocationBuilder.get();
+        if (response.getStatusInfo().getFamily() == javax.ws.rs.core.Response.Status.Family.REDIRECTION) {
+            target = client.target(response.getLocation());
+            invocationBuilder = target.request(MediaType.APPLICATION_JSON);
+        }
+        return invocationBuilder.get(ASCKUser.class);
     }
 
     protected List<ASCKEvent> getEventsForUser(String email) {
-//        ASCKUser asckUser = getASCKUser(email);
-//        Client client = ClientBuilder.newClient();
-//        WebTarget target = client.target("http://survey.asck-team.org/v1/feedback/events/ownedBy").path("" + asckUser.getId());
-//        Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
-//        javax.ws.rs.core.Response response = invocationBuilder.get();
-//        if (response.getStatusInfo().getFamily() == javax.ws.rs.core.Response.Status.Family.REDIRECTION) {
-//            target = client.target(response.getLocation());
-//            response = target.request(MediaType.APPLICATION_JSON).get();
-//        }
-//        return response.readEntity(new GenericType<List<ASCKEvent>>() {});
-        return null;
+        ASCKUser asckUser = getASCKUser(email);
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target("http://survey.asck-team.org/v1/feedback/events/ownedBy").path("" + asckUser.getId());
+        Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
+        javax.ws.rs.core.Response response = invocationBuilder.get();
+        if (response.getStatusInfo().getFamily() == javax.ws.rs.core.Response.Status.Family.REDIRECTION) {
+            target = client.target(response.getLocation());
+            response = target.request(MediaType.APPLICATION_JSON).get();
+        }
+        return response.readEntity(new GenericType<List<ASCKEvent>>() {});
     }
 
 
@@ -55,10 +60,11 @@ public class ASCKIntentHandler implements RequestHandler {
         String speechText = "Hello World";
 
 
-//        List<ASCKEvent> events = getEventsForUser("constantinidis@web.de");
-//
-//        String eventsString = events.stream().map(ASCKEvent::getName).collect(Collectors.joining(","));
+        log.info("bevor call getEvents4ForUser");
+        List<ASCKEvent> events = getEventsForUser("constantinidis@web.de");
 
-        return handlerInput.getResponseBuilder().withSpeech(speechText).withSimpleCard("Hello World", speechText).build();
+        String eventsString = events.stream().map(ASCKEvent::getName).collect(Collectors.joining(","));
+
+        return handlerInput.getResponseBuilder().withSpeech(eventsString).withSimpleCard("Hello World", speechText).build();
     }
 }
