@@ -10,7 +10,7 @@ public class ASCKStreamHandler extends SkillStreamHandler {
 
 
     private static Skill getSkill() {
-        return Skills.standard().addRequestHandlers(new ASCKIntentHandler(), new CancelAndStopIntentHandler(), new FallbackIntentHandler(), new HelpIntentHandler(), new LaunchRequestHandler(), new SessionEndedRequestHandler()).withSkillId("amzn1.ask.skill.8093cb49-747c-4553-817f-a7bd32da063e").build();
+        return Skills.standard().addRequestHandlers(new ASCKIntentHandler(), new CancelAndStopIntentHandler(), new FallbackIntentHandler(), new HelpIntentHandler(), new LaunchRequestHandler(), new SessionEndedRequestHandler()).addExceptionHandler(new ASCKExceptionHandler()).withSkillId("amzn1.ask.skill.8093cb49-747c-4553-817f-a7bd32da063e").build();
     }
 
     public ASCKStreamHandler() {
