@@ -7,6 +7,7 @@ import com.amazon.ask.request.Predicates;
 import lombok.extern.log4j.Log4j2;
 import org.asckteam.alexa.skill.model.ASCKEvent;
 import org.asckteam.alexa.skill.model.ASCKUser;
+import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -30,6 +31,7 @@ public class ASCKIntentHandler implements RequestHandler {
 
     protected ASCKUser getASCKUser(String email) {
         Client client = ClientBuilder.newClient();
+        client.register(JacksonJsonProvider.class);
         WebTarget target = client.target("http://survey.asck-team.org/v1/feedback/user").path(email);
         Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
         javax.ws.rs.core.Response response = invocationBuilder.get();
@@ -43,6 +45,7 @@ public class ASCKIntentHandler implements RequestHandler {
     protected List<ASCKEvent> getEventsForUser(String email) {
         ASCKUser asckUser = getASCKUser(email);
         Client client = ClientBuilder.newClient();
+        client.register(JacksonJsonProvider.class);
         WebTarget target = client.target("http://survey.asck-team.org/v1/feedback/events/ownedBy").path("" + asckUser.getId());
         Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
         javax.ws.rs.core.Response response = invocationBuilder.get();
