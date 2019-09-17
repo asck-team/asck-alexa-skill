@@ -8,4 +8,12 @@
 
 == Speaker Notes
 
+[plantuml]
+----
+@startuml
+start
+stop
+@enduml
+----
+
 Press the `*s*`  key to access the speaker notes.
