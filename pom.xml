@@ -89,7 +89,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.slides.directory>${project.build.directory}/generated-slides</project.slides.directory>
+        <project.slides.directory>${project.build.directory}/generated-docs</project.slides.directory>
 
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -215,6 +215,7 @@
                                 <require>asciidoctor-revealjs</require>
                             </requires>
                             <outputDirectory>${project.slides.directory}</outputDirectory>
+                            <outputFile>index.html</outputFile>
                             <backend>revealjs</backend>
                             <sourceHighlighter>rouge</sourceHighlighter>
                             <attributes>
