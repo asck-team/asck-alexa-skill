@@ -26,7 +26,37 @@ jobs:
           path: ~/test-results
       - store_artifacts:
           path: ~/test-results/junit
-
+      - persist_to_workspace:
+          root: target
+          paths: generated-docs
+  docs-deploy:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./target
+      - run:
+          name: "show content of directory"
+          command: ls target/generated-docs
+      - run:
+          name: "Disable jekyll builds"
+          command: touch target/generated-docs/.nojekyll
+      - run:
+          name: "show content of directory"
+          command: ls target/generated-docs
+      - run:
+          name: "Install and configure dependencies"
+          command: |
+            npm install -g --silent gh-pages@2.0.1
+            git config user.email "ci-build@constantinidis.de"
+            git config user.name "ci-build"
+      - add_ssh_keys:
+          fingerprints:
+            - "69:4c:df:d5:bf:e8:b0:fa:86:73:91:4b:a7:16:52:c7"
+      - run:
+          name: "Deploy docs to gh-pages branch"
+          command: gh-pages --dotfiles --message "[skip ci] Updates" --dist target/generated-docs
 workflows:
   version: 2
   build-n-deploy:
@@ -35,3 +65,9 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - docs-deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
