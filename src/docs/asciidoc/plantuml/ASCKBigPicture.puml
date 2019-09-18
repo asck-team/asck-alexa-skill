@@ -2,6 +2,7 @@
 !pragma graphviz_dot jdot
 skinparam handwritten true
 skinparam componentStyle uml2
+scale 10*10
 
 title Packages - Component Diagram
 
@@ -43,10 +44,10 @@ database "SQL_DB\n" {
 
 GUI -down-> Localhost
 AlexaSkills -down-> Localhost
-Localhost -down-(MVC
-MVC -down- API
+Localhost -right-(MVC
+MVC - API
 [Business Logic] -up- API : Web Services
 DA -up- IData  : .JPA
-[Business Logic] --( IData
-DA .. [Stored Data]
+[Business Logic] -( IData
+DA .right. [Stored Data]
 @enduml
