@@ -1,0 +1,53 @@
+@startuml
+!pragma graphviz_dot jdot
+skinparam handwritten true
+skinparam componentStyle uml2
+scale 10*10
+
+title Packages - Component Diagram
+
+package "Front End" {
+    component [Graphic User\nInterface\nHTML5 Thymleaf Framework] as GUI
+}
+
+package "AlexaSkill" {
+    component [AlexaSkill] as AlexaSkills
+}
+
+cloud Localhost/WWW as Localhost{
+}
+ 
+node "Server Anwendung \nSpringboot" as SA {
+    [Business Logic]
+    [Data Access] as DA
+    [MVC \nServer basierte WebAnwendung] as MVC  
+    interface RestAPI as API
+'    note left of Math : This is a web\nService Interface
+'    note right of Math : Notice the\nlabel below
+    interface "IData" as IData
+    
+    note left of [Business Logic]
+        Java
+    end note
+    
+    note left of [DA]
+    	Data acces 
+    	über CRUD 
+    	Repository
+    end note
+    
+} 
+
+database "SQL_DB\n" {
+    [Stored Data]
+}
+
+GUI -down-> Localhost
+AlexaSkills -down-> Localhost
+Localhost -right-(MVC
+MVC - API
+[Business Logic] -up- API : Web Services
+DA -up- IData  : .JPA
+[Business Logic] -( IData
+DA .right. [Stored Data]
+@enduml

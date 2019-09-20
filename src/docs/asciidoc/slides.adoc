@@ -1,10 +1,46 @@
-= ASCK Alexa Skill
+= ASCK Alexa : How to dev my own skill
 
-== Introduction
+:imagesdir: images
 
+== Agenda
 [%step]
-* This is a user manual
-* This project does somethin
+* Eigene Alexa Skill in wenigen Schritten
+* Was brauche ich dafür
+* FeedbackSystem als Rest API
+* Alexa Skill und die Schnittstelle zu meine eigene Rest API
+* ASCK Alexa live demo
+
+== Eigene Alexa Skill in wenige schritte
+
+image::alexa.png[width="800px"]
+
+
+== Was brauche ich dafür
+
+image::amazonAlexaBuildingCustomSkills.png[width="800px"]
+
+=== Was brauche ich dafür?
+[%step]
+* Developer und AWS Account bei Amazon
+* Eigene Skill implementieren
+[%step]
+** In Java, Node.js oder über AlexaDeveloperConsole
+* Eigene RestAPI implementieren (Optional)
+[%step]
+** Eine SpringBoot mit Thymleaf WebAnwendung => Feedbacksystem
+
+== FeedbackSystem als Rest API
+
+plantuml::plantuml/ASCKBigPicture.puml[]
+
+== Alexa Skill und die Schnittstelle zu meine eigene Rest API
+
+== ASCK Alexa live demo
+
+== Fragen?
+
+image::fragen.png[width="800px"]
+
 
 == Speaker Notes
 
