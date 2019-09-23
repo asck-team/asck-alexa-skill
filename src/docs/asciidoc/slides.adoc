@@ -1,6 +1,10 @@
 = ASCK Alexa : How to dev my own skill
 
+:revealjs_history: true
+:revealjs_slidenumber: c/t
 :imagesdir: images
+:revealjs_plugins: revealjs-plugins.js
+:revealjs_plugins_configuration: revealjs-plugins-conf.js
 
 == Agenda
 [%step]
