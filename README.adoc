@@ -16,3 +16,7 @@ Describe basic architecture with usage of heroku infrastructure from asck survey
 * https://github.com/asciidoctor/asciidoctor-maven-examples/tree/master/asciidoc-to-revealjs-example[official example from asciidoctor maven plugin]
 * https://spin.atomicobject.com/2017/01/25/alexa-aws-deployment/[AWS Lambda deployment with awscli]
 * https://circleci.com/blog/community-project-alexa-skill/[Alexa Skill with http rest call to circle ci]
+
+== Praesentation
+
+* https://asck-team.github.io/asck-alexa-skill[develop your own alexa skill]
