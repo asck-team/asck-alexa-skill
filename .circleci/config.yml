@@ -28,7 +28,9 @@ jobs:
           path: ~/test-results/junit
       - persist_to_workspace:
           root: target
-          paths: generated-docs
+          paths:
+            - generated-docs
+            - asck-alexa-skill-jar-with-dependencies-custom.jar
   docs-deploy:
     docker:
       - image: node:8.10.0
@@ -64,6 +66,9 @@ jobs:
         - checkout
         - attach_workspace:
             at: ./target
+        - run:
+            name: "show content of directory"
+            command: ls target
         - run:
             name: "Install AWS Cli"
             command: sudo pip install awscli
