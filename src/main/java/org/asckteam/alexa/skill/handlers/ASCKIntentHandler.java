@@ -32,8 +32,7 @@ public class ASCKIntentHandler implements RequestHandler {
     protected ASCKUser getASCKUser(String email) {
         Client client = ClientBuilder.newClient();
         client.register(JacksonJsonProvider.class);
-        WebTarget target = client.target("https://asck-survey-test.herokuapp.com/v1/feedback/user").path(email).path("/");
-        Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
+        Invocation.Builder invocationBuilder = client.target("https://asck-survey-test.herokuapp.com/v1/feedback/user").path(email).path("/").request(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
         return invocationBuilder.get(ASCKUser.class);
     }
 
@@ -41,8 +40,7 @@ public class ASCKIntentHandler implements RequestHandler {
         ASCKUser asckUser = getASCKUser(email);
         Client client = ClientBuilder.newClient();
         client.register(JacksonJsonProvider.class);
-        WebTarget target = client.target("https://asck-survey-test.herokuapp.com/v1/feedback/events/ownedBy").path("" + asckUser.getId());
-        Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
+        Invocation.Builder invocationBuilder = client.target("https://asck-survey-test.herokuapp.com/v1/feedback/events/ownedBy").path("" + asckUser.getId()).request(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
         return invocationBuilder.get(new GenericType<List<ASCKEvent>>() {});
     }
 
