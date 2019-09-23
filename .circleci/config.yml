@@ -59,14 +59,14 @@ jobs:
           command: gh-pages --dotfiles --message "[skip ci] Updates" --dist target/generated-docs
   aws-deploy:
       docker:
-        - image: circleci/python:3.6.4
+        - image: circleci/python:3.7-stretch
       steps:
         - checkout
         - attach_workspace:
             at: ./target
         - run:
             name: "Install AWS Cli"
-            command: pip install --user awscli
+            command: sudo pip install awscli
         - run:
             name: "Configure AWS CLI"
             command: |
