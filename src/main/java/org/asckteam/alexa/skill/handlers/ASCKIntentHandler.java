@@ -32,13 +32,8 @@ public class ASCKIntentHandler implements RequestHandler {
     protected ASCKUser getASCKUser(String email) {
         Client client = ClientBuilder.newClient();
         client.register(JacksonJsonProvider.class);
-        WebTarget target = client.target("http://survey.asck-team.org/v1/feedback/user").path(email);
+        WebTarget target = client.target("https://asck-survey-test.herokuapp.com/v1/feedback/user").path(email).path("/");
         Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
-        javax.ws.rs.core.Response response = invocationBuilder.get();
-        if (response.getStatusInfo().getFamily() == javax.ws.rs.core.Response.Status.Family.REDIRECTION) {
-            target = client.target(response.getLocation());
-            invocationBuilder = target.request(MediaType.APPLICATION_JSON);
-        }
         return invocationBuilder.get(ASCKUser.class);
     }
 
@@ -46,14 +41,9 @@ public class ASCKIntentHandler implements RequestHandler {
         ASCKUser asckUser = getASCKUser(email);
         Client client = ClientBuilder.newClient();
         client.register(JacksonJsonProvider.class);
-        WebTarget target = client.target("http://survey.asck-team.org/v1/feedback/events/ownedBy").path("" + asckUser.getId());
+        WebTarget target = client.target("https://asck-survey-test.herokuapp.com/v1/feedback/events/ownedBy").path("" + asckUser.getId());
         Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
-        javax.ws.rs.core.Response response = invocationBuilder.get();
-        if (response.getStatusInfo().getFamily() == javax.ws.rs.core.Response.Status.Family.REDIRECTION) {
-            target = client.target(response.getLocation());
-            response = target.request(MediaType.APPLICATION_JSON).get();
-        }
-        return response.readEntity(new GenericType<List<ASCKEvent>>() {});
+        return invocationBuilder.get(new GenericType<List<ASCKEvent>>() {});
     }
 
 
@@ -64,7 +54,7 @@ public class ASCKIntentHandler implements RequestHandler {
 
 
         log.info("bevor call getEvents4ForUser");
-        List<ASCKEvent> events = getEventsForUser("constantinidis@web.de");
+        List<ASCKEvent> events = getEventsForUser("andrei.sava@gmail.com");
 
         String eventsString = events.stream().map(ASCKEvent::getName).collect(Collectors.joining(","));
 
