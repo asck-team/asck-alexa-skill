@@ -44,16 +44,3 @@ plantuml::plantuml/ASCKBigPicture.puml[]
 == Fragen?
 
 image::fragen.png[width="800px"]
-
-
-== Speaker Notes
-
-[plantuml]
-----
-@startuml
-start
-stop
-@enduml
-----
-
-Press the `*s*`  key to access the speaker notes.
