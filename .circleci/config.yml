@@ -57,6 +57,26 @@ jobs:
       - run:
           name: "Deploy docs to gh-pages branch"
           command: gh-pages --dotfiles --message "[skip ci] Updates" --dist target/generated-docs
+  aws-deploy:
+      docker:
+        - image: circleci/python:3.6.4
+      steps:
+        - checkout
+        - attach_workspace:
+            at: ./target
+        - run:
+            name: "Install AWS Cli"
+            command: pip install --user awscli
+        - run:
+            name: "Configure AWS CLI"
+            command: |
+              aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+              aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+              aws configure set default.region eu-west-1
+              aws configure set default.output json
+        - run:
+            name: "Deploy to AWS"
+            command: aws lambda update-function-code --function-name 'ASCKLambda' --zip-file 'fileb://target/asck-alexa-skill-jar-with-dependencies-custom.jar'
 workflows:
   version: 2
   build-n-deploy:
@@ -66,6 +86,12 @@ workflows:
             tags:
               only: /.*/
       - docs-deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+      - aws-deploy:
           requires:
             - build
           filters:
