@@ -47,15 +47,13 @@ public class ASCKIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        log.info("handle: " + handlerInput.getRequestEnvelope().getVersion() );
-        String speechText = "Hello World";
+        String speechText = "Aktuell stehen keine Umfragen zur Verfügung.";
 
 
-        log.info("bevor call getEvents4ForUser");
-        List<ASCKEvent> events = getEventsForUser("andrei.sava@gmail.com");
+        // List<ASCKEvent> events = getEventsForUser("andrei.sava@gmail.com");
 
-        String eventsString = events.stream().map(ASCKEvent::getName).collect(Collectors.joining(","));
+        // String eventsString = events.stream().map(ASCKEvent::getName).collect(Collectors.joining(","));
 
-        return handlerInput.getResponseBuilder().withSpeech(eventsString).withSimpleCard("Hello World", speechText).build();
+        return handlerInput.getResponseBuilder().withSpeech(speechText).withSimpleCard("ASCK", speechText).build();
     }
 }

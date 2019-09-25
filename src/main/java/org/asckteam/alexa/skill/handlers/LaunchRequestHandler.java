@@ -20,7 +20,7 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        String speechText = "Welcome to Alexa Skills Kit, you can say hello";
-        return handlerInput.getResponseBuilder().withSpeech(speechText).withSimpleCard("Hello World", speechText).withReprompt(speechText).build();
+        String speechText = "Willkommen zu ASCK Umfragen, du kannst mich fragen welche Umfragen dir zur Verfügung stehen.";
+        return handlerInput.getResponseBuilder().withSpeech(speechText).withSimpleCard("ASCK Umfragen", speechText).withReprompt(speechText).build();
     }
 }
