@@ -1,0 +1,26 @@
+@startuml
+skinparam defaultTextAlignment center
+!include <tupadr3/common>
+!include <tupadr3/devicons/linux>
+!include <tupadr3/devicons/git>
+!include <tupadr3/devicons/java>
+!include <tupadr3/devicons/jenkins>
+!include <tupadr3/devicons/aws>
+
+scale 1.5
+
+title Deployment
+
+DEV_GIT(git, GIT, database) #WHITE
+DEV_JAVA(skill, SKILL, file) #WHITE
+DEV_JENKINS(buildServer, BUILD SERVER) #WHITE
+DEV_AWS(aws, AWS, rectangle) #WHITE
+
+actor Developer as developer
+
+developer -> skill: change code
+skill -up-> git: push
+buildServer <- git: clone and build project
+buildServer -down-> aws: deploy
+
+@enduml
