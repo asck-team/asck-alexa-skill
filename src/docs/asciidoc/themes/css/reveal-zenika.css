@@ -113,6 +113,11 @@ body {
   text-align: center;
 }
 
+.bigText{
+font-size: 500%;
+text-align: center;
+}
+
 /* moves the whole section slightly to the left */
 .reveal .slides section > section {
   margin-left: -30px;
@@ -190,7 +195,7 @@ body {
 .reveal h2, .reveal h3, #toctitle {
   margin: 0px 0px 40px -20px;
   padding: 0 0 0px 20px;
-  text-align: left;
+  text-align: center;
   font-size: 40px;
 }
 

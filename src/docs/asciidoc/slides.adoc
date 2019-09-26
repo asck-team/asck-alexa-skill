@@ -6,16 +6,15 @@
 :revealjs_plugins: revealjs-plugins.js
 :revealjs_plugins_configuration: revealjs-plugins-conf.js
 
-== Agenda
-[%step]
-* Eigene Alexa Skill in wenigen Schritten
-* Was brauche ich dafür
-* FeedbackSystem als Rest API
-* Alexa Skill und die Schnittstelle zu meine eigene Rest API
-* ASCK Alexa live demo
-
 == Eigene Alexa Skill in wenige schritte
-
+[.notes]
+****
+* Wir brauchen jetzt kurz eure Unterstutzung ...
+* InnoDay 2018 - echoDot geschenkt
+* Frage: Wer hat alles ein Amazon echo bekommen?
+* Wer hat ihn eingerichtet un benutzt?
+* Wer hat schon selber ein Skill entwickelt?
+****
 image::alexa.png[width="800px"]
 
 
@@ -37,9 +36,22 @@ image::amazonAlexaBuildingCustomSkills.png[width="800px"]
 
 plantuml::plantuml/ASCKBigPicture.puml[]
 
-== Alexa Skill und die Schnittstelle zu meine eigene Rest API
+[%notitle,background-iframe="https://www.youtube.com"]
+== Skill Model
+
+
+== Alexa Skill Entwicklung und Deployment
+
+plantuml::plantuml/SkillBigPicture.puml[svg]
 
 == ASCK Alexa live demo
+
+[.bigText]
+{empty} +
+{empty} +
+{empty} +
+{empty} +
+...let's try it
 
 == Fragen?
 
