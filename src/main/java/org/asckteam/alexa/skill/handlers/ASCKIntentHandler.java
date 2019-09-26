@@ -47,7 +47,7 @@ public class ASCKIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
         List<ASCKEvent> events = getEventsForUser("andrei.alexandru.sava@gmail.com");
-        String speechText = String.format("Aktuell stehen %s Umfragen zur Verfügung. ", events.size())
+        String speechText = String.format("Aktuell stehen %s Umfragen zur Verfügung. ", events.size());
 
         int maxCounter = 0;
         if (maxCounter > 0) {
