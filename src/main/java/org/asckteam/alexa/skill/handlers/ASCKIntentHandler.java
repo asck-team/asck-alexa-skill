@@ -43,18 +43,25 @@ public class ASCKIntentHandler implements RequestHandler {
         return invocationBuilder.get(new GenericType<List<ASCKEvent>>() {});
     }
 
-
+    // tag::revealjs[]
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        String speechText = "Aktuell stehen keine Umfragen zur Verfügung.";
-
-
         List<ASCKEvent> events = getEventsForUser("andrei.alexandru.sava@gmail.com");
+        String speechText = String.format("Aktuell stehen %s Umfragen zur Verfügung. ", events.size())
 
+        int maxCounter = 0;
+        if (maxCounter > 0) {
+            String firstTwoSurveys = events.stream().
+                    limit(maxCounter).
+                    map(ASCKEvent::getName).
+                    collect(Collectors.joining(" und "));
+            speechText.concat(String.format("Die ersten %s Umfragen heißen %s.",  maxCounter, firstTwoSurveys));
+        }
 
-        int maxCounter = 2;
-        speechText = String.format("Aktuell stehen %s Umfragen zur Verfügung. Die ersten %s Umfragen heißen %s.", events.size(), maxCounter, events.stream().limit(maxCounter).map(ASCKEvent::getName).collect(Collectors.joining(" und ")));
-
-        return handlerInput.getResponseBuilder().withSpeech(speechText).withSimpleCard("ASCK", speechText).build();
+        return handlerInput.
+                getResponseBuilder().
+                withSpeech(speechText).
+                withSimpleCard("ASCK", speechText).build();
     }
+    // end::revealjs[]
 }

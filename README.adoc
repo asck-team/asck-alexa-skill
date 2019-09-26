@@ -1,6 +1,6 @@
 = ASCK Alexa Skill
 
-image:https://travis-ci.org/asck-team/asck-alexa-skill.svg?branch=master["Build Status", link="https://travis-ci.org/asck-team/asck-alexa-skill"]
+image:https://circleci.com/gh/asck-team/asck-alexa-skill.svg["CircleCI", link="https://circleci.com/gh/asck-team/asck-alexa-skill"]
 
 == Architecture
 

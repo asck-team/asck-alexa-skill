@@ -6,6 +6,7 @@
 :imagesdir: images
 :revealjs_plugins: revealjs-plugins.js
 :revealjs_plugins_configuration: revealjs-plugins-conf.js
+:sourcedir: ../../main/java
 
 == Eigene Alexa Skill in wenige schritte
 [.notes]
@@ -38,18 +39,31 @@ image::amazonAlexaBuildingCustomSkills.png[width="800px"]
 plantuml::plantuml/ASCKBigPicture.puml[]
 
 [.transparent.background]
-[%notitle,background-iframe="https://developer.amazon.com/alexa/console/ask/build/custom/amzn1.ask.skill.8093cb49-747c-4553-817f-a7bd32da063e/development/de_DE/intents/ASCKIntent"]
+[%notitle,background-iframe="https://developer.amazon.com/alexa/console/ask"]
 == Skill Model
 
 == Alexa Skill Entwicklung und Deployment
 
 plantuml::plantuml/SkillBigPicture.puml[svg]
 
+== Alexa Skill Java Code
+
+[source, java]
+----
+include::{sourcedir}/org/asckteam/alexa/skill/handlers/ASCKIntentHandler.java[indent=0, tag=revealjs]
+----
+
+[.transparent.background]
+[%notitle,background-iframe="https://app.circleci.com/github/asck-team/asck-alexa-skill/pipelines"]
+== Alexa Skill Build & Deployment
+
+
 == ASCK Alexa live demo
 
 [.halign-center]
-* Alexa öffne Umfragen
-* Welche
+[.valign-center]
+__Alexa öffne Umfragen!__
+__Welche?__
 
 == Fragen?
 [.halign-center]
