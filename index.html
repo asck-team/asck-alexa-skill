@@ -17,9 +17,30 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );</script><!--[if 
 <div class="imageblock" style=""><img src="images/alexa.png" alt="alexa" width="800px"></div></section>
 <section><section id="_was_brauche_ich_dafür"><h2>Was brauche ich dafür</h2><div class="imageblock" style=""><img src="images/amazonAlexaBuildingCustomSkills.png" alt="amazonAlexaBuildingCustomSkills" width="800px"></div></section><section id="_was_brauche_ich_dafür_2"><h2>Was brauche ich dafür?</h2><div class="ulist"><ul><li class="fragment"><p>Developer und AWS Account bei Amazon</p></li><li class="fragment"><p>Eigene Skill implementieren</p><div class="ulist"><ul><li class="fragment"><p>In Java, Node.js oder über AlexaDeveloperConsole</p></li></ul></div></li><li class="fragment"><p>Eigene RestAPI implementieren (Optional)</p><div class="ulist"><ul><li class="fragment"><p>Eine SpringBoot mit Thymleaf WebAnwendung &#8658; Feedbacksystem</p></li></ul></div></li></ul></div></section></section>
 <section id="_feedbacksystem_als_rest_api"><h2>FeedbackSystem als Rest API</h2><div class="imageblock" style=""><img src="images/ASCKBigPicture.png" alt="ASCKBigPicture"></div></section>
-<section id="_skill_model" class="transparent background" data-background-iframe="https://developer.amazon.com/alexa/console/ask/build/custom/amzn1.ask.skill.8093cb49-747c-4553-817f-a7bd32da063e/development/de_DE/intents/ASCKIntent"></section>
+<section id="_skill_model" class="transparent background" data-background-iframe="https://developer.amazon.com/alexa/console/ask"></section>
 <section id="_alexa_skill_entwicklung_und_deployment"><h2>Alexa Skill Entwicklung und Deployment</h2><div class="imageblock" style=""><img src="images/svg.png" alt="svg"></div></section>
-<section id="_asck_alexa_live_demo"><h2>ASCK Alexa live demo</h2><div class="ulist halign-center"><ul><li><p>Alexa öffne Umfragen</p></li><li><p>Welche</p></li></ul></div></section>
+<section id="_alexa_skill_java_code"><h2>Alexa Skill Java Code</h2><pre class="highlight listingblock"><code class="java language-java"><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Response</span><span class="o">&gt;</span> <span class="nf">handle</span><span class="o">(</span><span class="n">HandlerInput</span> <span class="n">handlerInput</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">ASCKEvent</span><span class="o">&gt;</span> <span class="n">events</span> <span class="o">=</span> <span class="n">getEventsForUser</span><span class="o">(</span><span class="s">"andrei.alexandru.sava@gmail.com"</span><span class="o">);</span>
+    <span class="n">String</span> <span class="n">speechText</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Aktuell stehen %s Umfragen zur Verfügung. "</span><span class="o">,</span> <span class="n">events</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+
+    <span class="kt">int</span> <span class="n">maxCounter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">maxCounter</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">firstTwoSurveys</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span>
+                <span class="n">limit</span><span class="o">(</span><span class="n">maxCounter</span><span class="o">).</span>
+                <span class="n">map</span><span class="o">(</span><span class="nl">ASCKEvent:</span><span class="o">:</span><span class="n">getName</span><span class="o">).</span>
+                <span class="n">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">joining</span><span class="o">(</span><span class="s">" und "</span><span class="o">));</span>
+        <span class="n">speechText</span><span class="o">.</span><span class="na">concat</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Die ersten %s Umfragen heißen %s."</span><span class="o">,</span>  <span class="n">maxCounter</span><span class="o">,</span> <span class="n">firstTwoSurveys</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">handlerInput</span><span class="o">.</span>
+            <span class="nf">getResponseBuilder</span><span class="o">().</span>
+            <span class="n">withSpeech</span><span class="o">(</span><span class="n">speechText</span><span class="o">).</span>
+            <span class="n">withSimpleCard</span><span class="o">(</span><span class="s">"ASCK"</span><span class="o">,</span> <span class="n">speechText</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span></code></pre></section>
+<section id="_alexa_skill_build_deployment" class="transparent background" data-background-iframe="https://app.circleci.com/github/asck-team/asck-alexa-skill/pipelines"></section>
+<section id="_asck_alexa_live_demo"><h2>ASCK Alexa live demo</h2><div class="paragraph halign-center valign-center"><p><em>Alexa öffne Umfragen!</em>
+<em>Welche?</em></p></div></section>
 <section id="_fragen"><h2>Fragen?</h2><div class="imageblock halign-center" style=""><img src="images/qr-code.png" alt="qr code" width="50%"></div></section></div></div><script src="reveal.js-3.7.0/lib/js/head.min.js"></script><script src="reveal.js-3.7.0/js/reveal.js"></script><script>Array.prototype.slice.call(document.querySelectorAll('.slides section')).forEach(function(slide) {
   if (slide.getAttribute('data-background-color')) return;
   // user needs to explicitly say he wants CSS color to override otherwise we might break custom css or theme (#226)
