@@ -1,5 +1,6 @@
 = ASCK Alexa : How to dev my own skill
 
+:customcss: my_css.css
 :revealjs_history: true
 :revealjs_slidenumber: c/t
 :imagesdir: images
@@ -36,9 +37,9 @@ image::amazonAlexaBuildingCustomSkills.png[width="800px"]
 
 plantuml::plantuml/ASCKBigPicture.puml[]
 
-[%notitle,background-iframe="https://www.youtube.com"]
+[.transparent.background]
+[%notitle,background-iframe="https://developer.amazon.com/alexa/console/ask/build/custom/amzn1.ask.skill.8093cb49-747c-4553-817f-a7bd32da063e/development/de_DE/intents/ASCKIntent"]
 == Skill Model
-
 
 == Alexa Skill Entwicklung und Deployment
 
@@ -46,13 +47,10 @@ plantuml::plantuml/SkillBigPicture.puml[svg]
 
 == ASCK Alexa live demo
 
-[.bigText]
-{empty} +
-{empty} +
-{empty} +
-{empty} +
-...let's try it
+[.halign-center]
+* Alexa öffne Umfragen
+* Welche
 
 == Fragen?
-
-image::fragen.png[width="800px"]
+[.halign-center]
+image::qr-code.png[width="50%"]

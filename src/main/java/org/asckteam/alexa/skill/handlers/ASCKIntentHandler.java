@@ -12,7 +12,6 @@ import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvi
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -50,9 +49,11 @@ public class ASCKIntentHandler implements RequestHandler {
         String speechText = "Aktuell stehen keine Umfragen zur Verfügung.";
 
 
-        // List<ASCKEvent> events = getEventsForUser("andrei.sava@gmail.com");
+        List<ASCKEvent> events = getEventsForUser("andrei.alexandru.sava@gmail.com");
 
-        // String eventsString = events.stream().map(ASCKEvent::getName).collect(Collectors.joining(","));
+
+        int maxCounter = 2;
+        speechText = String.format("Aktuell stehen %s Umfragen zur Verfügung. Die ersten %s Umfragen heißen %s.", events.size(), maxCounter, events.stream().limit(maxCounter).map(ASCKEvent::getName).collect(Collectors.joining(" und ")));
 
         return handlerInput.getResponseBuilder().withSpeech(speechText).withSimpleCard("ASCK", speechText).build();
     }
