@@ -24,7 +24,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );</script><!--[if 
     <span class="n">List</span><span class="o">&lt;</span><span class="n">ASCKEvent</span><span class="o">&gt;</span> <span class="n">events</span> <span class="o">=</span> <span class="n">getEventsForUser</span><span class="o">(</span><span class="s">"andrei.alexandru.sava@gmail.com"</span><span class="o">);</span>
     <span class="n">String</span> <span class="n">speechText</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"Aktuell stehen %s Umfragen zur Verfügung. "</span><span class="o">,</span> <span class="n">events</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
 
-    <span class="kt">int</span> <span class="n">maxCounter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">maxCounter</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">maxCounter</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">String</span> <span class="n">firstTwoSurveys</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span>
                 <span class="n">limit</span><span class="o">(</span><span class="n">maxCounter</span><span class="o">).</span>
