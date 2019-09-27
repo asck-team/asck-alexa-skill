@@ -49,7 +49,7 @@ public class ASCKIntentHandler implements RequestHandler {
         List<ASCKEvent> events = getEventsForUser("andrei.alexandru.sava@gmail.com");
         String speechText = String.format("Aktuell stehen %s Umfragen zur Verfügung. ", events.size());
 
-        int maxCounter = 0;
+        int maxCounter = 2;
         if (maxCounter > 0) {
             String firstTwoSurveys = events.stream().
                     limit(maxCounter).
